@@ -1,7 +1,9 @@
 
 namespace MediSureClinic
 {
-    // ENTITY CLASS
+    /// <summary>
+    /// the patient bill class 
+    /// </summary>
     public class PatientBill
     {
         public string? BillId;
@@ -15,13 +17,17 @@ namespace MediSureClinic
         public decimal FinalPayable;
     }
 
-    // SERVICE / MANAGER CLASS
-    public class BillingService
+    /// <summary>
+    /// billing Service is the class for teh 
+    /// </summary>
+    public class Billing
     {
         public static PatientBill LastBill;
         public static bool HasLastBill = false;
 
-        // 1. CREATE NEW BILL
+        /// <summary>
+        /// create new bill function 
+        /// </summary>
         public void CreateNewBill()
         {
             PatientBill bill = new PatientBill();
@@ -29,6 +35,7 @@ namespace MediSureClinic
             Console.Write("Enter Bill Id: ");
             bill.BillId = Console.ReadLine();
 
+            //here validation for the bill 
             if (string.IsNullOrWhiteSpace(bill.BillId))
             {
                 Console.WriteLine("Bill Id cannot be empty.");
@@ -43,8 +50,12 @@ namespace MediSureClinic
 
             if (insuranceInput == "Y" || insuranceInput == "y")
                 bill.HasInsurance = true;
-            else
+            else if (insuranceInput=="N" || insuranceInput == "n")
                 bill.HasInsurance = false;
+            else{
+                Console.WriteLine("enter valid input");
+                return;
+            }
 
             Console.Write("Enter Consultation Fee: ");
             bill.ConsultationFee = Convert.ToDecimal(Console.ReadLine());

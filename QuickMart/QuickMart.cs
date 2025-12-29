@@ -1,9 +1,13 @@
 namespace Quickmart{
+
+/// <summary>
+/// sale transaction class for the data member
+/// </summary>
 public class SaleTransaction
 {
-    public string InvoiceNo { get; set; } = "";
-    public string CustomerName { get; set; } = "";
-    public string ItemName { get; set; } = "";
+    public string? InvoiceNo { get; set; } 
+    public string? CustomerName { get; set; } 
+    public string? ItemName { get; set; } 
     public int Quantity { get; set; }
     public decimal PurchaseAmount { get; set; }
     public decimal SellingAmount { get; set; }
@@ -13,6 +17,9 @@ public class SaleTransaction
     public decimal ProfitMarginPercent { get; set; }
 
 }
+/// <summary>
+/// implementation is done here 
+/// </summary>
 public class TransactionService
 {
     public static SaleTransaction? LastTransaction;
@@ -71,7 +78,7 @@ public class TransactionService
         Console.WriteLine("------------------------------------------------------");
     }
 
-    // ⿢ View Last Transaction
+    //  View Last Transaction
     public void ViewLastTransaction()
     {
         if (!HasLastTransaction || LastTransaction == null)
@@ -93,7 +100,7 @@ public class TransactionService
         Console.WriteLine("--------------------------------------------");
     }
 
-    // ⿣ Recalculate Profit / Loss
+    //  Recalculate Profit / Loss
     public void RecalculateProfitLoss()
     {
         if (!HasLastTransaction || LastTransaction == null)
@@ -107,7 +114,7 @@ public class TransactionService
         Console.WriteLine("------------------------------------------------------");
     }
 
-    // 🔁 Calculation Logic
+    //  Calculation Logic
     private void CalculateProfitLoss(SaleTransaction ts)
     {
         if (ts.SellingAmount > ts.PurchaseAmount)
@@ -130,7 +137,7 @@ public class TransactionService
             (ts.ProfitOrLossAmount / ts.PurchaseAmount) * 100;
     }
 
-    // 🖨 Print Calculation Summary
+    //  Print Calculation Summary
     private void PrintCalculation(SaleTransaction ts)
     {
         Console.WriteLine($"Status: {ts.ProfitOrLossStatus}");
